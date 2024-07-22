@@ -1,5 +1,5 @@
 import os
-from utils.general_1 import *
+from utils.general import *
 import pickle
 from concatenate_clips import *
 import sys
@@ -21,6 +21,8 @@ def create_frames():
         #         out_file2+=i
         # out_file = out_file2
         video_name = pickle.load(file)
+        print("pred_dict is predicted.bin in crete_frames() is ",pred_dict)
+        print(out_file)
     # print(pred_dict)
     frame_list, fps, (w, h) = generate_frames(video_name)
     # print(pred_dict, len(pred_dict), "pred_dict")
@@ -32,7 +34,15 @@ def create_frames():
 def testing():
 
     frame_list, pred_dict, out_file = create_frames()
+    print("legth of fl , pd , of is ",len(frame_list),len(pred_dict),len(out_file))
+    print(pred_dict)
+    # print("frame_list[0] is ",frame_list[0].shape[1])
+    # print("Length of frame_list[0]" , len(frame_list[0]))
+    # print("len(pred_dict['Frame'] ", len(pred_dict['Frame']))
     frame_list = frame_list[:len(pred_dict['Frame'])]
+    # print("After editing fl is ",frame_list)
+    # print("After editing fl length ",len(frame_list))
+    # print("Length of frame_list[0]" , len(frame_list[0]))
     scores = {"p1" : 0, "p2" : 0}
     pointers_to_players = {"closer" : "p1", "farther" : "p2"}
     # pointers_to_scores = {"p1" : scores["p1"], "p2" : scores["p2"]}
@@ -43,7 +53,7 @@ def testing():
 
     # print(frame_list)
 
-    add_frame = pred_dict_modify(pred_dict, frame_list, dict(fps=30, shape=(frame_list[0].shape[1], frame_list[0].shape[0])))
+    add_frame = pred_dict_modify(False,pred_dict, frame_list, dict(fps=30, shape=(frame_list[0].shape[1], frame_list[0].shape[0])))
     
 
     last_frame_of_prev_vid = None
@@ -51,7 +61,7 @@ def testing():
 
 
     # add_frame = pred_dict_modify(add_frame, args2[1], args2[0], dict(fps=30, shape=(args2[0][0].shape[1], args2[0][0].shape[0])))
-    af2, frame_in_csv, active_frame, save_file =write_pred_video_modified(frame_list, dict(fps=30, shape=(frame_list[0].shape[1], frame_list[0].shape[0])), pred_dict, save_file=out_file, prev_last_frame=None, add_frame=add_frame, traj_len=8)
+    af2, frame_in_csv, active_frame, save_file =write_pred_video_modified(frame_list, dict(fps=30, shape=(frame_list[0].shape[1], frame_list[0].shape[0])), pred_dict,prev_last_frame=None, save_file=out_file, add_frame=add_frame, traj_len=8)
     # last_frame_of_prev_vid = add_frame[-1]
 
     # print(frame_in_csv, active_frame, save_file, "printing details")
@@ -63,11 +73,15 @@ def testing():
 
     frame_list = []
     frame_list, fps, (w, h) = generate_frames(save_file)
-    # print("save file, " ,save_file)
+    print("save file, " ,save_file)
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4 format
-    temp_output_path = f"{out_file}_score_clip.mp4"
+    temp_output_path = f"{out_file[:-4]}_score_clip.mp4"
     out = cv2.VideoWriter(temp_output_path, fourcc, 30, (frame_width, frame_height))
+
+    print("active frame is ",active_frame)
+
+
 
     for i, frame in enumerate(frame_list):
         if(i in active_frame):

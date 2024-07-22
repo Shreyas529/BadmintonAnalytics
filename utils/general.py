@@ -681,7 +681,8 @@ def write_pred_video_modified(frame_list, video_cofig, pred_dict, save_file, pre
 
     blackframe = cv2.imread("blackscreen.jpg")
     active_frame = 0
-    frame_in_csv = None
+    active_frame_list = []
+    frame_in_csv = []
     active_frame_returned = None
     file_name = save_file
 
@@ -724,8 +725,9 @@ def write_pred_video_modified(frame_list, video_cofig, pred_dict, save_file, pre
             print(i,"Starting clip")
 
             # clip_start(i, active_frame, save_file)
-            frame_in_csv = i
-            active_frame_returned = active_frame
+            frame_in_csv.append(i)
+            active_frame_list.append(active_frame)
+            # active_frame_returned = active_frame
             file_name = save_file
             # print("Finished")
             # out.write(blackframe)
@@ -735,7 +737,7 @@ def write_pred_video_modified(frame_list, video_cofig, pred_dict, save_file, pre
         #     reappearance_list.append(frame)
     
     out.release()
-    return add_frame, frame_in_csv, active_frame_returned, file_name
+    return add_frame, frame_in_csv, active_frame_list, file_name
 
 
 
