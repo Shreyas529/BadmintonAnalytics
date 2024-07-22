@@ -1,4 +1,4 @@
-from predict_2 import *
+from predict import *
 import pandas
 
 if __name__ == '__main__':
@@ -57,7 +57,6 @@ if __name__ == '__main__':
             frame_list, fps, (w,h) = generate_frames_from_cap(cap)
             pred_dict = pred_main(frame_list=frame_list, fps=fps, w=w, h=h)
 
-            os.remove("temp_clip.mp4")
         
         for k in range(len(pred_dict['Frame'])):
             pred_dict['Frame'][k] += i*30*clip_duration
