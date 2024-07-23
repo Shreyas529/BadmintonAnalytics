@@ -8,7 +8,7 @@ from ultralytics import YOLO
 
 
 
-model = YOLO("E:/Combined-files/Combined-files/best.pt")
+model = YOLO("../ckpts/best.pt")
 
 # Function to perform inference and get normalized bounding box coordinates in xywh format for each frame
 def get_bounding_boxes(frame, img_width, img_height):
