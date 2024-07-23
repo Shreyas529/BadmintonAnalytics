@@ -679,7 +679,6 @@ def write_pred_video_modified(frame_list, video_cofig, pred_dict, save_file, pre
     elif prev_last_frame == True:
         last_frame = True
 
-    blackframe = cv2.imread("blackscreen.jpg")
     active_frame = 0
     active_frame_list = []
     frame_in_csv = []
