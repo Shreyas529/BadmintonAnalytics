@@ -1,7 +1,6 @@
 import os
 from utils.general import *
 import pickle
-from concatenate_clips import *
 import sys
 from utils.func_clips_start_end import *
 # from join_clips import *
