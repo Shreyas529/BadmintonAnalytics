@@ -2,6 +2,7 @@
 Badminton Analytics using CV - so far, highlight creation and automatic score updation using TrackNet and YOLO
 
 [TrackNetV3 Model Repository](https://github.com/qaz812345/TrackNetV3)
+
 [YOLOv8 Model Repository](https://github.com/ultralytics/ultralytics)
 
 ## Environment setup:
