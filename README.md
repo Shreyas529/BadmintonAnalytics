@@ -1,5 +1,5 @@
 # BadmintonAnalyticsCV
-Badminton Analytics using CV - so far, highlight creation and automatic score updation using TrackNet and YOLO
+Badminton Analytics using CV - so far, highlight creation and automatic score updation using TrackNet and YOLO.
 
 [TrackNetV3 Model Repository](https://github.com/qaz812345/TrackNetV3)
 
